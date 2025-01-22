@@ -1,0 +1,13 @@
+languageCode: en
+title: "Minecraft Access"
+disableKinds:
+  - taxonomy
+  - term
+  - rss
+
+security:
+  funcs:
+    getenv:
+      - ^GITHUB_REPOSITORY$
+      - ^GITHUB_REF_NAME$
+      - ^GITHUB_SHA$

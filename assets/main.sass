@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto")
+
+*, *::before, *::after
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  line-height: 1.5
+  overflow-wrap: anywhere
+
+.centre
+  text-align: center
+
+.sparse > *
+  margin-block: 1em
+
+.cta
+  display: inline-block
+  margin: 1.5em 0.25em
+  padding: 0.5em 1em
+  background: #40a849
+  color: #000000
+  text-decoration: none
+  border: #aaaaaa solid 1px
+  &:hover
+    background: #63d46c
+
+body
+  display: grid
+  grid-template: "head" 4em "content" 1fr "footer" min-content / 100vw
+  min-height: 100vh
+  font-family: "Roboto", sans-serif
+
+header
+  grid-area: head
+  position: static
+  top: 0
+  backdrop-filter: blur(5px)
+  background: linear-gradient(#aaaaaaff, #ffffff00)
+  display: flex
+  align-items: center
+  gap: 2em
+  .logo
+    height: 3em
+    border-radius: 4em
+    margin-left: 0.5em
+  nav ul
+    list-style: none
+    display: flex
+    gap: 1em
+    a
+      text-decoration: none
+      color: #1c8009
+      &:hover
+        color: #36572b
+
+main
+  grid-area: content
+  > div
+    max-width: 100ch
+    margin-inline: auto
+
+footer
+  grid-area: footer
+  text-align: center
+  font-size: 0.9em
+  padding-block: 1em
+  background: #b8b8b8
+  border-top: #aaaaaa solid 2px
+  p
+    margin-block: 1em
+  a
+    text-decoration: none
+    color: #1c8009
+    &:hover
+      color: #36572b
