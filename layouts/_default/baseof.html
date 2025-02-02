@@ -35,6 +35,9 @@
                 <li><a href="{{ .RelPermalink }}">Download</a></li>
                 {{ end }}
                 <li><a href="https://docs.mcaccess.org/">Docs</a></li>
+                {{ with .Site.GetPage "faq" }}
+                <li><a href="{{ .RelPermalink }}">FAQ</a></li>
+                {{ end }}
                 <li><a href="https://github.com/minecraft-access/minecraft-access">GitHub</a></li>
                 <li><a href="https://discord.gg/yQjjsDqWQX">Discord</a></li>
             </ul>
