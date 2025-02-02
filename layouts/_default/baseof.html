@@ -1,58 +1,68 @@
 <!DOCTYPE html>
 <html lang="{{- .Site.LanguageCode -}}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{- block "title" . -}}{{- default .Page.Path .Page.Title }} | {{ .Site.Title -}}{{- end -}}</title>
     {{- with resources.Get "main.sass" | toCSS | minify | fingerprint -}}
-        <link rel="stylesheet" href="{{- .RelPermalink -}}" integrity="{{- .Data.Integrity -}}">
+    <link rel="stylesheet" href="{{- .RelPermalink -}}" integrity="{{- .Data.Integrity -}}">
     {{- end -}}
     {{- with resources.Get "logo.png" | fingerprint -}}
-        <link rel="shortcut icon" href="{{- .RelPermalink -}}" integrity="{{- .Data.Integrity -}}">{{- /**/ -}}
-        <meta property="og:image" content="{{- .RelPermalink -}}">
+    <link rel="shortcut icon" href="{{- .RelPermalink -}}" integrity="{{- .Data.Integrity -}}">{{- /**/ -}}
+    <meta property="og:image" content="{{- .RelPermalink -}}">
     {{- end -}}
     <meta property="theme-color" media="(prefers-color-scheme: dark)" content="#267547">{{- /**/ -}}
     <meta property="theme-color" media="(prefers-color-scheme: light)" content="#40a849">{{- /**/ -}}
     <meta property="og:image:alt"
-          content="Minecraft Access logo. A retro games controller graphic over a blurred background of a snowy mountain village next to a spruce forrest.">
+        content="Minecraft Access logo. A retro games controller graphic over a blurred background of a snowy mountain village next to a spruce forrest.">
     {{- template "_internal/opengraph.html" . -}}
     {{- template "_internal/schema.html" . -}}
     {{- template "_internal/twitter_cards.html" . -}}
 </head>
+
 <body>
-<header>
-    {{- with resources.Get "logo.png" -}}
-        <img class="logo"
-             src="{{- .RelPermalink -}}"
-             alt="Logo: A retro games controller over a blurred snowy mountain village next to a spruce forrest.">
-    {{- end -}}
-    <span>{{- .Site.Title -}}</span>
-    <nav>
-        <ul>
-            <li><a href="https://docs.mcaccess.org/downloads">Download</a></li>
-            <li><a href="https://docs.mcaccess.org/">Docs</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <div>
-        {{- block "main" . -}}{{- end -}}
-    </div>
-</main>
-<footer>
-    {{- with getenv "GITHUB_REPOSITORY" -}}
+    <header>
+        {{- with resources.Get "logo.png" -}}
+        <img class="logo" src="{{- .RelPermalink -}}"
+            alt="Logo: A retro games controller over a blurred snowy mountain village next to a spruce forrest.">
+        {{- end -}}
+        <span>{{- .Site.Title -}}</span>
+        <nav>
+            <ul>
+                <li><a href="{{ .Site.Home.Permalink }}">Home</a></li>
+                {{ with .Site.GetPage "downloads" }}
+                <li><a href="{{ .RelPermalink }}">Download</a></li>
+                {{ end }}
+                <li><a href="https://docs.mcaccess.org/">Docs</a></li>
+                {{ with .Site.GetPage "faq" }}
+                <li><a href="{{ .RelPermalink }}">FAQ</a></li>
+                {{ end }}
+                <li><a href="https://github.com/minecraft-access/minecraft-access">GitHub</a></li>
+                <li><a href="https://discord.gg/yQjjsDqWQX">Discord</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div>
+            {{- block "main" . -}}{{- end -}}
+        </div>
+    </main>
+    <footer>
+        {{- with getenv "GITHUB_REPOSITORY" -}}
         <p>
             <a href="https://github.com/{{- . -}}">{{- . -}}</a>
             {{- with getenv "GITHUB_SHA" }}
-                @ <a href="https://github.com/{{- getenv "GITHUB_REPOSITORY" -}}/commit/{{- . -}}">
-                    <abbr title="{{- . -}}">{{- . | truncate 9 "" -}}</abbr>
-                </a>
+            @ <a href="https://github.com/{{- getenv " GITHUB_REPOSITORY" -}}/commit/{{- . -}}">
+                <abbr title="{{- . -}}">{{- . | truncate 9 "" -}}</abbr>
+            </a>
             {{- end -}}
         </p>
-    {{- end -}}
-    <p>
-        NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
-    </p>
-</footer>
+        {{- end -}}
+        <p>
+            NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
+        </p>
+    </footer>
 </body>
+
 </html>
