@@ -53,7 +53,7 @@
         <p>
             <a href="https://github.com/{{- . -}}">{{- . -}}</a>
             {{- with getenv "GITHUB_SHA" }}
-            @ <a href="https://github.com/{{- getenv " GITHUB_REPOSITORY" -}}/commit/{{- . -}}">
+            @ <a href="https://github.com/{{- getenv "GITHUB_REPOSITORY" -}}/commit/{{- . -}}">
                 <abbr title="{{- . -}}">{{- . | truncate 9 "" -}}</abbr>
             </a>
             {{- end -}}
